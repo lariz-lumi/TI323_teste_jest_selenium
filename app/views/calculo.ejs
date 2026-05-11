@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <div>
+            <h1>Calculo de Area</h1>
+        </div>
+        <div>
+            ola, <strong>
+                <%= user.nome %>
+            </strong>
+            <a href="/logout">Sair</a>
+        </div>
+    </nav>
+    <form method="POST" action="/calculo" id="calculoForm">
+        <div>
+            <label for="altura">Altura</label>
+            <input type="text" id="altura" name="altura" placeholder="Digite altura" required>
+        </div>
+
+        <div>
+            <label for="altura">Largura</label>
+            <input type="text" id="largura" name="Largura" placeholder="Digite Largura" required>
+        </div>
+    </form>
+    <button id="btnCalcular" onclick="calcular()">Calcular</button>
+    <div></div><br>
+    <div><span>Resultado</span> <span id="data">
+        </span></div>
+</body>
+
+<script>
+    const alturaF = parseFloat(document.getElementById('altura').value)
+    const larguraF = parseFloat(document.getElementById('largura').value)
+
+    const payload = {
+        altura: alturaF,
+        largura: larguraF,
+    }
+    try {
+        const res = await fetch('/calculo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        const json = await res.json() 
+        if(!json.sucess) {alert('Erro'+ json.error)} 
+        const d = json.data 
+        document.getElementById('data').textContent = d.toString()
+    } catch (err) {
+        alert("erro " = err.message)
+    } finally{}
+</script>
+
+</html>
