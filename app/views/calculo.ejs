@@ -8,55 +8,67 @@
 </head>
 
 <body>
+    <div>
+        <h1>Calculo de area</h1>
+    </div>
     <nav>
         <div>
-            <h1>Calculo de Area</h1>
-        </div>
-        <div>
-            ola, <strong>
-                <%= user.nome %>
+            Ola, <strong>
+                <%= user.user %>
             </strong>
             <a href="/logout">Sair</a>
         </div>
     </nav>
     <form method="POST" action="/calculo" id="calculoForm">
         <div>
-            <label for="altura">Altura</label>
-            <input type="text" id="altura" name="altura" placeholder="Digite altura" required>
+            <label for="altura">altura</label>
+            <input type="number" name="altura" placeholder="altura" id="altura" required>
         </div>
-
         <div>
-            <label for="altura">Largura</label>
-            <input type="text" id="largura" name="Largura" placeholder="Digite Largura" required>
+            <label for="largura">largura</label>
+            <input type="number" name="largura" placeholder="largura" id="largura" required>
         </div>
+        <div></div><br>
     </form>
-    <button id="btnCalcular" onclick="calcular()">Calcular</button>
-    <div></div><br>
-    <div><span>Resultado</span> <span id="data">
-        </span></div>
+     <button id="btnCalcular" onclick="calcular()">Calcular</button>
+    <div><span>Resultado</span> <span id="data"></span></div>
+
+    <script>
+
+
+
+        async function calcular() {
+
+            const alturaF = parseFloat(document.getElementById("altura").value)
+            const larguraF = parseFloat(document.getElementById("largura").value)
+
+            const payload = {
+                altura: alturaF,
+                largura: larguraF
+            }
+            try {
+                const res = await fetch('/calculo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                const json = await res.json()
+                if (!json.success) {
+                    alert('Erro' + json.error)
+                    return
+                }
+                const d = json.data
+                document.getElementById('data').textContent = d.toString()
+            }
+            catch (err) {
+                alert(err)
+            }
+            finally {
+
+            }
+        }
+
+    </script>
 </body>
-
-<script>
-    const alturaF = parseFloat(document.getElementById('altura').value)
-    const larguraF = parseFloat(document.getElementById('largura').value)
-
-    const payload = {
-        altura: alturaF,
-        largura: larguraF,
-    }
-    try {
-        const res = await fetch('/calculo', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        const json = await res.json() 
-        if(!json.sucess) {alert('Erro'+ json.error)} 
-        const d = json.data 
-        document.getElementById('data').textContent = d.toString()
-    } catch (err) {
-        alert("erro " = err.message)
-    } finally{}
-</script>
 
 </html>

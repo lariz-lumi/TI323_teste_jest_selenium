@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="3" failures="0" errors="0" time="0.223">
+  <testsuite name="Teste com valores corretos" errors="0" failures="0" skipped="0" timestamp="2026-05-04T19:47:04" time="0.105" tests="2">
+    <testcase classname="Teste com valores corretos Valores incorretos" name="Teste com valores corretos Valores incorretos" time="0.001">
+    </testcase>
+    <testcase classname="Teste com valores corretos Valores corretos" name="Teste com valores corretos Valores corretos" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Teste para ver se a API está ok (Saude)" errors="0" failures="0" skipped="0" timestamp="2026-05-04T19:47:04" time="0.075" tests="1">
+    <testcase classname="Teste para ver se a API está ok (Saude) Deve retornar 200 e status ok" name="Teste para ver se a API está ok (Saude) Deve retornar 200 e status ok" time="0.013">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -2,15 +2,16 @@
 //
 //. Teste da API
 /*
-describe('', () => {aaa });
+describe('', () => {aaa})
+
 
 aaa:
-  test('', async ()=> { })
-  test('', () => {})
+    test('', async () => { })
+    test('', async () => {})
 */
 
-const request = require('supertest');
-const app     = require('./src/app')
+const request = require('supertest')
+const app = require('../src/app')
 
 describe('Teste para ver se a API está ok (Saude)', () => {
     test('Deve retornar 200 e status ok', async () => {
