@@ -1,20 +1,34 @@
 name: Teste e Deploy TI323
 
 on:
-   push:
-        branches: [main,dev]
-   
-
-
+  push:
+    branches: [main, dev]
 
 jobs:
-    basico_exemplo:
-        runs-on: ubuntu-latest
-        
-        steps:
-            - name: lista diretorio
-              run: ls -la
-            
-            - name: lista variaveis do github
-              run: |
-                echo "${{github}}"
+  basico_exemplo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: lista diretorio
+        run: ls -la
+
+      - name: lista variaveis do github
+        run: |
+          echo "${{ github }}"
+
+  deploy_api:
+    needs: basico_exemplo
+    if: success()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy_API_RENDER
+        id: Deploy_API_RENDER
+        run: |
+          RESPONSE=$(curl --request GET \
+            --url "${{ secrets.DEPLOY_HOOK }}" \
+            --header "accept: application/json" \
+            --header "content-type: application/json"
+          )
+
+          echo "Deploy response: $RESPONSE"
