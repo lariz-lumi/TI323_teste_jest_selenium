@@ -1,0 +1,20 @@
+name: Teste e Deploy TI323
+
+on:
+   push:
+        branches: [main,dev]
+   
+
+
+
+jobs:
+    basico_exemplo:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: lista diretorio
+              run: ls -la
+            
+            - name: lista variaveis do github
+              run: |
+                echo "${{github}}"

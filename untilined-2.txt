@@ -1,0 +1,5 @@
+curl --request GET \
+    --url 'https://api.render.com/deploy/srv-d8a8nbjtqb8s7396uc40?key=3qmmsPijkLs'
+    --header 'accept: application/json' \
+    --header 'content-type: application/json'
+
