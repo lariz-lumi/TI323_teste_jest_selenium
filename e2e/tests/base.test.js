@@ -57,7 +57,7 @@ async function main(){
         const errMsg = await drive.findElement(By.css('.erro')).getText()
         if(!errMsg.includes('invalidos')) throw new Error(`Falha`)
 
-    }finally{
+    }finally{ 
         if(driver) await driver.quit()
 
     }
